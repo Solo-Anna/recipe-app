@@ -21,7 +21,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(user=self.request.user).order_by('-id')
 
     def get_serializer_class(self):
-        """Return the reliazer class for request."""
+        """Return the sereliazer class for request."""
         if self.action == 'list':
             return serializers.RecipeSerializer
 

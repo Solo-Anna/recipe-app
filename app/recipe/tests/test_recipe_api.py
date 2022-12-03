@@ -20,7 +20,7 @@ RECIPES_URL = reverse('recipe:recipe-list')
 
 def detail_url(recipe_id):
     """Create and return a recipe detail URL."""
-    return reverse ('recipe:recipe-detail', args=[recipe_id])
+    return reverse('recipe:recipe-detail', args=[recipe_id])
 
 def create_recipe(user, **params):
     """CReate and return a sample recipe."""
@@ -144,9 +144,9 @@ class PrivateRecipeAPITests(TestCase):
         payload = {
             'title': 'New recipe title',
             'link': 'https://example.com/new-recipe.pdf',
-            'description': 'New recipe description',
+            'description': 'New sample description',
             'time_minutes': 10,
-            'price': Decimal('2.50')
+            'price': Decimal('2.50'),
         }
         url = detail_url(recipe.id)
         res = self.client.put(url, payload)
