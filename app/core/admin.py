@@ -1,5 +1,6 @@
 """
 Django admin customization
+Token d33cf4ea3494f5c9c35bd893bf51677f868e692e
 """
 
 from django.contrib import admin
@@ -47,4 +48,4 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Recipe)
 admin.site.register(models.Tag)
-
+admin.site.register(models.Ingredient)
