@@ -143,10 +143,10 @@ class PrivateTagsApiTests(TestCase):
     def test_filtered_tags_not_assigned (self):
         """Test filtered tags doesnt' return not assigned."""
 
-        Tag.objects.create(user=self.user, name='Dinner')
+        tag = Tag.objects.create(user=self.user, name='Dinner')
 
         res = self.client.get(TAGS_URL, {'assigned_only': 0})
 
-        self.assertEqual(len(res.data), 0)
+        self.assertNotIn(tag, res.data)
 
 

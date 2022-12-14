@@ -85,7 +85,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         parameters=[
             OpenApiParameter(
                 'assigned_only',
-                OpenApiTypes.INT, enum=[0,1],
+                OpenApiTypes.INT, enum=[0, 1],
                 description='Filter by items assigned to recipes.'
             )
         ]
@@ -105,8 +105,10 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
         queryset = self.queryset
         if assigned_only:
             queryset = queryset.filter(recipe__isnull=False)
-
-        return queryset.filter(user=self.request.user).order_by('-name').distinct()
+        else:
+            queryset = queryset.filter(recipe__isnull=True)
+        return queryset.filter(
+            user=self.request.user).order_by('-name').distinct()
 
 
 class TagViewSet(BaseRecipeAttrViewSet):
